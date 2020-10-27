@@ -9,7 +9,7 @@ const makeAllCaps = (array) => {
   });
 };
 
-const sortWords = (array) => {
+const sortWords = (array) =>  {
   return new Promise((resolve, reject) => {
     array.every((word) => typeof word === 'string')
       ? resolve(array.sort())
@@ -18,7 +18,14 @@ const sortWords = (array) => {
 };
 
 const textTransform = async (array) => {
-  // here
+  try {
+    const allCaps = await makeAllCaps(array);
+    const sortedArray = await sortWords(allCaps);
+    console.log(sortedArray);
+    return sortedArray
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 textTransform(['cucumber', 'tomatos', 'avocado']);
